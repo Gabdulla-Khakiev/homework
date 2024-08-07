@@ -3,6 +3,7 @@ from masks import get_mask_account
 
 
 def mask_account_card(user_information: str) -> str:
+    """Функция маскирует номер счета и карты"""
     words_list = user_information.split(" ")
     if words_list[-1].isdigit() and len(words_list[-1]) == 16:
         words_list[-1] = get_mask_card_number(words_list[-1])
@@ -12,6 +13,7 @@ def mask_account_card(user_information: str) -> str:
 
 
 def get_date(date: str) -> str:
+    """Функция меняет формат написания даты"""
     modified_date_list = date[:10].split("-")
     modified_date_list.reverse()
     modified_date = ".".join(modified_date_list)
