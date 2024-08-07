@@ -28,7 +28,3 @@ def get_mask_account(account_number: Union[str]) -> Union[str]:
     masked_account_number = "".join(last_numbers_list)
 
     return masked_account_number
-
-
-print(get_mask_card_number(input()))
-print(get_mask_account(input()))
