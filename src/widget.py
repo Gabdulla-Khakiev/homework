@@ -11,5 +11,13 @@ def mask_account_card(user_information: str) -> str:
     return " ".join(words_list)
 
 
+def get_date(date: str) -> str:
+    modified_date_list = date[:10].split("-")
+    modified_date_list.reverse()
+    modified_date = ".".join(modified_date_list)
+    return modified_date
+
+
 if __name__ == "__main__":
     print(mask_account_card(input()))
+    print(get_date(input()))
