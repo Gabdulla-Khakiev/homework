@@ -1,6 +1,7 @@
 from masks import get_mask_card_number
 from masks import get_mask_account
 
+
 def mask_account_card(user_information: str) -> str:
     words_list = user_information.split(" ")
     if words_list[-1].isdigit() and len(words_list[-1]) == 16:
