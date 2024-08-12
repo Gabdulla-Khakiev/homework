@@ -3,4 +3,12 @@ from typing import List
 
 def filter_by_state(list_of_dict: List, state='EXECUTED') -> List:
     """Функция возвращает список отсортированных словарей по параметру state"""
-    pass
+    filtered_list = []
+    for i in list_of_dict:
+        if i['state'] == state:
+            filtered_list.append(dict)
+    return filtered_list
+
+
+def sort_by_date(list_of_dict_2: List, reverse=True):
+    return sorted(list_of_dict_2, key=lambda x: x['date'], reverse=reverse)
