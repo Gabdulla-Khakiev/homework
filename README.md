@@ -38,7 +38,7 @@ masked_account = get_mask_account(account_number)
 print(masked_account)  # Вывод: **76543210
 
 ```
-###2. Обработка данных (processing.py)
+### 2. Обработка данных (processing.py)
 #### Фильтрация по состоянию
 Функция `filter_by_state(list_of_dict: List[dict], state='EXECUTED') -> List[dict]` возвращает список словарей, отфильтрованных по значению ключа `state`.
 
