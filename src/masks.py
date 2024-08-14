@@ -27,9 +27,15 @@ def get_mask_card_number(card_number: Union[str]) -> Union[str]:
 def get_mask_account(account_number: Union[str]) -> Union[str]:
     """Функция возвращает замаскированный номер счета"""
 
-    last_numbers_string = account_number[-6:]
-    last_numbers_list = list(last_numbers_string)
-    last_numbers_list[:2] = ["*", "*"]
-    masked_account_number = "".join(last_numbers_list)
+    if isinstance(account_number, str):
+        if len(account_number) == 20:
+            last_numbers_string = account_number[-6:]
+            last_numbers_list = list(last_numbers_string)
+            last_numbers_list[:2] = ["*", "*"]
+            masked_account_number = "".join(last_numbers_list)
 
-    return masked_account_number
+            return masked_account_number
+        else:
+            return 'Это не номер счета'
+    else:
+        return 'Это не номер счета'
