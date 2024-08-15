@@ -1,15 +1,22 @@
-from masks import get_mask_card_number
-from masks import get_mask_account
+from src.masks import get_mask_card_number
+from src.masks import get_mask_account
 
 
 def mask_account_card(user_information: str) -> str:
     """Функция маскирует номер счета и карты"""
-    words_list = user_information.split(" ")
-    if words_list[-1].isdigit() and len(words_list[-1]) == 16:
-        words_list[-1] = get_mask_card_number(words_list[-1])
-    elif words_list[-1].isdigit():
-        words_list[-1] = get_mask_account(words_list[-1])
-    return " ".join(words_list)
+    if isinstance(user_information, str):
+        words_list = user_information.split(" ")
+
+        if words_list[-1].isdigit() and len(words_list[-1]) == 16:
+            words_list[-1] = get_mask_card_number(words_list[-1])
+        elif words_list[-1].isdigit() and len(words_list[-1]) == 20:
+            words_list[-1] = get_mask_account(words_list[-1])
+        else:
+            return "Ошибка ввода"
+
+        return " ".join(words_list)
+    else:
+        return "Ошибка ввода"
 
 
 def get_date(date: str) -> str:
