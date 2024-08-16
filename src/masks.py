@@ -36,6 +36,6 @@ def get_mask_account(account_number: Union[str]) -> Union[str]:
 
             return masked_account_number
         else:
-            return 'Это не номер счета'
+            return "Это не номер счета"
     else:
-        return 'Это не номер счета'
+        return "Это не номер счета"
