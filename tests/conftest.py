@@ -11,6 +11,10 @@ def valid_account_number():
     return '73654108430135874305'
 
 
+@pytest.fixture()
+def expected_form_of_date():
+    return '11.03.2024'
+
 
  # [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
  # {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'},

@@ -1,5 +1,6 @@
 from src.masks import get_mask_card_number
 from src.masks import get_mask_account
+from datetime import datetime
 
 
 def mask_account_card(user_information: str) -> str:
@@ -21,10 +22,14 @@ def mask_account_card(user_information: str) -> str:
 
 def get_date(date: str) -> str:
     """Функция меняет формат написания даты"""
-    modified_date_list = date[:10].split("-")
-    modified_date_list.reverse()
-    modified_date = ".".join(modified_date_list)
-    return modified_date
+    try:
+        datetime_object = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
+        modified_date_list = date[:10].split("-")
+        modified_date_list.reverse()
+        modified_date = ".".join(modified_date_list)
+        return modified_date
+    except ValueError:
+        raise ValueError("Invalid datetime format")
 
 
 if __name__ == "__main__":
