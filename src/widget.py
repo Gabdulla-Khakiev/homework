@@ -30,8 +30,3 @@ def get_date(date: str) -> str:
         return modified_date
     except ValueError:
         raise ValueError("Invalid datetime format")
-
-
-if __name__ == "__main__":
-    print(mask_account_card(input()))
-    print(get_date(input()))
