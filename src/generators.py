@@ -2,7 +2,7 @@ def filter_by_currency(transactions_list, currency):
     """Функция возвращает отсортированный список словарей по параметру 'currency' """
     if len(transactions_list) > 0:
         filtered_transactions = filter(
-            lambda transactions_list_2:
+            lambda transactions_list:
             transactions_list.get("operationAmount").get("currency").get("code") == currency, transactions_list)
         return filtered_transactions
     else:
