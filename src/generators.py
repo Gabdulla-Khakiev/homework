@@ -1,5 +1,5 @@
 def filter_by_currency(transactions_list, currency):
-    """Генератор возвращает отсортированный список словарей по параметру 'currency' """
+    """Функция возвращает отсортированный список словарей по параметру 'currency' """
     if len(transactions_list) > 0:
         filtered_transactions = filter(
             lambda transactions_list_2:
@@ -15,9 +15,9 @@ def transaction_descriptions(transactions_list):
         yield transaction['description']
 
 
-def card_number_generator(start, end):
+def card_number_generator(start, stop):
     """Генератор номеров банковских карт в формате XXXX XXXX XXXX XXXX."""
-    for number in range(start, end + 1):
+    for number in range(start, stop + 1):
         card_number = f"{number:016d}"
         formatted_card_number = f"{card_number[:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:]}"
         yield formatted_card_number
