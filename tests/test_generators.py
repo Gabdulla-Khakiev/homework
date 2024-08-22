@@ -74,3 +74,21 @@ def test_transaction_descriptions(transactions, index, expected):
 def test_transaction_descriptions_exceptions():
     descriptions = transaction_descriptions([])
     assert list(descriptions) == ['Нет транзакций']
+
+
+@pytest.mark.parametrize(
+    "start, stop, expected_numbers",
+    [
+        (1, 1, ["0000 0000 0000 0001"]),
+        (1, 3, ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]),
+        (1234567890123456, 1234567890123456, ["1234 5678 9012 3456"]),
+        (9999999999999998, 9999999999999999, ["9999 9999 9999 9998", "9999 9999 9999 9999"]),
+        (1000, 1000, ["0000 0000 0000 1000"])
+    ]
+)
+def test_card_number_generator(start, stop, expected_numbers):
+    """Параметризованный тест генератора номеров карт."""
+    generator = card_number_generator(start, stop)
+    generated_numbers = list(generator)
+
+    assert generated_numbers == expected_numbers
