@@ -1,15 +1,21 @@
 from typing import List
 
 
-def filter_by_state(list_of_dict: List, state='EXECUTED') -> List:
+def filter_by_state(list_of_dict: List, state="EXECUTED"):
     """Функция возвращает список отсортированных словарей по параметру state"""
-    filtered_list = []
     for i in list_of_dict:
-        if i['state'] == state:
-            filtered_list.append(i)
-    return filtered_list
+        if "state" in i:
+            if state == "":
+                state = "EXECUTED"
+            return [item for item in list_of_dict if item["state"] == state]
+        else:
+            return '"state" not found'
 
 
-def sort_by_date(list_of_dict_2: List, reverse=True) -> List:
+def sort_by_date(list_of_dict: List, reverse=True):
     """Функция возвращает отсртированный список по дате"""
-    return sorted(list_of_dict_2, key=lambda x: x['date'], reverse=reverse)
+    for i in list_of_dict:
+        if "date" in i:
+            return sorted(list_of_dict, key=lambda x: x["date"], reverse=reverse)
+        else:
+            return '"date" not found'
