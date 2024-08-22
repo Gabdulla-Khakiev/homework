@@ -1,9 +1,10 @@
 def filter_by_currency(transactions_list, currency):
-    """Функция возвращает отсортированный список словарей по параметру 'currency' """
+    """Функция возвращает отсортированный список словарей по параметру 'currency'"""
     if len(transactions_list) > 0:
         filtered_transactions = filter(
-            lambda transactions_list:
-            transactions_list.get("operationAmount").get("currency").get("code") == currency, transactions_list)
+            lambda transactions_list: transactions_list.get("operationAmount").get("currency").get("code") == currency,
+            transactions_list,
+        )
         return filtered_transactions
     else:
         return "Список пустой!"
@@ -11,13 +12,14 @@ def filter_by_currency(transactions_list, currency):
 
 # Функция для генерации описаний транзакций
 
+
 def transaction_descriptions(transactions):
     """Генератор, который возвращает описание каждой транзакции."""
     if not transactions:
         yield "Нет транзакций"
     else:
         for description_operation in transactions:
-            yield description_operation.get('description')
+            yield description_operation.get("description")
 
 
 def card_number_generator(start, stop):
