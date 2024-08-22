@@ -9,10 +9,15 @@ def filter_by_currency(transactions_list, currency):
         return "Список пустой!"
 
 
-def transaction_descriptions(transactions_list):
-    """Генератор возвращает описание транзакции"""
-    for transaction in transactions_list:
-        yield transaction['description']
+# Функция для генерации описаний транзакций
+
+def transaction_descriptions(transactions):
+    """Генератор, который возвращает описание каждой транзакции."""
+    if not transactions:
+        yield "Нет транзакций"
+    else:
+        for description_operation in transactions:
+            yield description_operation.get('description')
 
 
 def card_number_generator(start, stop):

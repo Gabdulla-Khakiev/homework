@@ -49,7 +49,7 @@ def empty_date_list_for_tests():
 
 @pytest.fixture
 def transactions():
-    return ([
+    return [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -125,4 +125,4 @@ def transactions():
             "from": "Visa Platinum 1246377376343588",
             "to": "Счет 14211924144426031657"
         }
-    ])
+    ]

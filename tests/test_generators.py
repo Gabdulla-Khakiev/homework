@@ -1,3 +1,5 @@
+import pytest
+
 from src.generators import filter_by_currency
 from src.generators import transaction_descriptions
 from src.generators import card_number_generator
@@ -52,10 +54,23 @@ def test_filter_by_currency(transactions):
         }
 
 
-
 def test_filter_by_currency_exceptions(transactions):
     result = filter_by_currency(transactions, "EUR")
     assert list(result) == []
     result = filter_by_currency([], "EUR")
     assert result == "Список пустой!"
 
+
+@pytest.mark.parametrize('index, expected', [
+    (0, 'Перевод организации'),
+    (1, 'Перевод со счета на счет'),
+    (2, 'Перевод со счета на счет'),
+])
+def test_transaction_descriptions(transactions, index, expected):
+    descriptions = list(transaction_descriptions(transactions))
+    assert descriptions[index] == expected
+
+
+def test_transaction_descriptions_exceptions():
+    descriptions = transaction_descriptions([])
+    assert list(descriptions) == ['Нет транзакций']
