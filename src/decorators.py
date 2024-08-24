@@ -3,6 +3,7 @@ from functools import wraps
 
 
 def log(filename=None):
+    """Декороратор логирует начало и конец работы функции"""
     def timer(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
