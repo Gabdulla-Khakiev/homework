@@ -126,3 +126,17 @@ def transactions():
             "to": "Счет 14211924144426031657"
         }
     ]
+
+
+@pytest.fixture()
+def result_for_log():
+    return ("Function 'get_nod' started at 00:00:00\n"
+            "Function 'get_nod' finished at 00:00:00\n"
+            'Result: 2')
+
+
+@pytest.fixture()
+def result_for_log_exception():
+    return ("Function 'get_nod' raised an error: TypeError - '>' not supported between " 
+            "instances of 'str' and 'int'\n" 
+            "Inputs: args=('2', 100000000), kwargs={}")
