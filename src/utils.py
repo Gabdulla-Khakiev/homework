@@ -2,6 +2,7 @@ import json
 import os
 
 
+file_path = 'data/operations.json'
 def load_transactions(file_path: str) -> list:
     """Загружает данные о финансовых транзакциях из JSON-файла"""
 
@@ -19,6 +20,3 @@ def load_transactions(file_path: str) -> list:
 
     except (json.JSONDecodeError, FileNotFoundError):
         return []
-
-
-file_path = 'data/operations.json'
