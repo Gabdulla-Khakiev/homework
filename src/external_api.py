@@ -1,20 +1,25 @@
 import requests
+import os
+from dotenv import load_dotenv
 
 
-API_KEY = 'EXCHANGES_API'
+load_dotenv()
+
+API_KEY = os.getenv('EXCHANGES_API')
 BASE_URL = 'https://api.apilayer.com/exchangerates_data/convert'
 
-def get_exchange(amount, from_currency, to_currency='RUB'):
-    params = {
-        'from': from_currency,
-        'to': to_currency,
-        'amount': amount,
-    }
-    headers = {'apikey': API_KEY}
-    response = requests.get(BASE_URL, headers=headers, params=params)
 
-    if response.status_code == 200:
+def get_exchange_rate(amount, from_currency, to_currency='RUB'):
+    """Получает курс валюты через Exchange Rates Data API."""
+    url = f'{BASE_URL}?to={to_currency}&from={from_currency}&amount={amount}'
+    headers = {'apikey': API_KEY}
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
         data = response.json()
-        return data.get('result', 0)
-    else:
-        raise Exception(f"Error fetching exchange rate: {response.status_code}")
+        return data['result']
+
+    except requests.RequestException as e:
+        print(f"Ошибка при получении курса валют: {e}")
+        return None
