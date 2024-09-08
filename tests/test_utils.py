@@ -1,12 +1,17 @@
-import pytest
 import json
-from unittest.mock import patch, mock_open
-from src.utils import load_transactions, get_transaction_amount_in_rub
+from unittest.mock import mock_open, patch
+
+import pytest
+
+from src.utils import get_transaction_amount_in_rub, load_transactions
 
 
 @pytest.fixture()
-@patch("builtins.open", new_callable=mock_open,
-       read_data='[{"id": 1, "operationAmount": {"amount": "1000", "currency": {"code": "USD"}}}]')
+@patch(
+    "builtins.open",
+    new_callable=mock_open,
+    read_data='[{"id": 1, "operationAmount": {"amount": "1000", "currency": {"code": "USD"}}}]',
+)
 def test_load_transactions_valid(mock_file):
     """Тест для проверки корректной загрузки транзакций из файла."""
     transactions = load_transactions("data/operations.json")
@@ -33,9 +38,7 @@ def test_load_transactions_file_not_found(mock_exists):
 @patch("src.utils.get_exchange_rate", return_value=75000.0)
 def test_get_transaction_amount_in_rub_usd(mock_get_exchange_rate):
     """Тест для проверки конвертации из USD в RUB."""
-    transaction = {
-        "operationAmount": {"amount": "1000", "currency": {"code": "USD"}}
-    }
+    transaction = {"operationAmount": {"amount": "1000", "currency": {"code": "USD"}}}
     amount_in_rub = get_transaction_amount_in_rub(transaction)
     mock_get_exchange_rate.assert_called_once_with(1000.0, "USD")
     assert amount_in_rub == 75000.0
@@ -44,26 +47,20 @@ def test_get_transaction_amount_in_rub_usd(mock_get_exchange_rate):
 @patch("src.utils.get_exchange_rate", return_value=None)
 def test_get_transaction_amount_in_rub_api_error(mock_get_exchange_rate):
     """Тест для проверки обработки ошибки API при конвертации валюты."""
-    transaction = {
-        "operationAmount": {"amount": "1000", "currency": {"code": "USD"}}
-    }
+    transaction = {"operationAmount": {"amount": "1000", "currency": {"code": "USD"}}}
     with pytest.raises(ValueError, match="Не удалось получить курс валюты."):
         get_transaction_amount_in_rub(transaction)
 
 
 def test_get_transaction_amount_in_rub_rub():
     """Тест для проверки случая, когда валюта уже в рублях."""
-    transaction = {
-        "operationAmount": {"amount": "1000", "currency": {"code": "RUB"}}
-    }
+    transaction = {"operationAmount": {"amount": "1000", "currency": {"code": "RUB"}}}
     amount_in_rub = get_transaction_amount_in_rub(transaction)
     assert amount_in_rub == 1000.0
 
 
 def test_get_transaction_amount_in_rub_unsupported_currency():
     """Тест для проверки обработки неподдерживаемой валюты."""
-    transaction = {
-        "operationAmount": {"amount": "1000", "currency": {"code": "JPY"}}
-    }
+    transaction = {"operationAmount": {"amount": "1000", "currency": {"code": "JPY"}}}
     with pytest.raises(ValueError, match="Неподдерживаемая валюта: JPY"):
         get_transaction_amount_in_rub(transaction)

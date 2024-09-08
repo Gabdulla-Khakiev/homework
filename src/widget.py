@@ -23,7 +23,7 @@ def mask_account_card(user_information: str) -> str:
 def get_date(date: str) -> str:
     """Функция меняет формат написания даты"""
     try:
-        datetime_object = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
+        datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
         modified_date_list = date[:10].split("-")
         modified_date_list.reverse()
         modified_date = ".".join(modified_date_list)
