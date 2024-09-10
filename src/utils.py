@@ -6,7 +6,7 @@ from src.external_api import get_exchange_rate
 
 logger = logging.getLogger("utils")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("logs/utils.log", mode='w', encoding='utf8')
+file_handler = logging.FileHandler("logs/utils.log", mode="w", encoding="utf8")
 file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -84,14 +84,8 @@ transaction = {
     "id": 939719570,
     "state": "EXECUTED",
     "date": "2018-06-30T02:08:58.425572",
-    "operationAmount": {
-      "amount": "9824.07",
-      "currency": {
-        "name": "USD",
-        "code": "USD"
-      }
-    }
+    "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
 }
 
-if __name__ == '__main__':
-    print(load_transactions('data/operations.json'))
+if __name__ == "__main__":
+    print(load_transactions("data/operations.json"))

@@ -1,10 +1,9 @@
 import logging
 from typing import Union
 
-
 logger = logging.getLogger("masks")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("logs/masks.log", mode='w', encoding='utf8')
+file_handler = logging.FileHandler("logs/masks.log", mode="w", encoding="utf8")
 file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -34,11 +33,11 @@ def get_mask_card_number(card_number: Union[str]) -> Union[str]:
 
             return masked_card_number
         else:
-            logger.error(f"Произошла ошибка: Введен не номер карты")
+            logger.error("Произошла ошибка: Введен не номер карты")
             logger.info("Звершение работы функции")
             return "Это не номер карты!"
     else:
-        logger.error(f"Произошла ошибка: Введен не номер карты")
+        logger.error("Произошла ошибка: Введен не номер карты")
         logger.info("Звершение работы функции")
         return "Это не номер карты!"
 
@@ -62,12 +61,12 @@ def get_mask_account(account_number: Union[str]) -> Union[str]:
 
             return masked_account_number
         else:
-            logger.error(f"Произошла ошибка: Введен не номер счета")
+            logger.error("Произошла ошибка: Введен не номер счета")
             logger.info("Звершение работы функции")
 
             return "Это не номер счета"
     else:
-        logger.error(f"Произошла ошибка: Введен не номер счета")
+        logger.error("Произошла ошибка: Введен не номер счета")
         logger.info("Звершение работы функции")
 
         return "Это не номер счета"
