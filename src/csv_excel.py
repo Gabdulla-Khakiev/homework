@@ -1,9 +1,8 @@
 import pandas as pd
-import csv
 
 
-# csv_file_path = 'data/transactions.csv'
-# xlsx_file_path = 'data/transactions_excel.xlsx'
+csv_file_path = 'data/transactions.csv'
+xlsx_file_path = 'data/transactions_excel.xlsx'
 
 
 def read_transactions_from_csv(csv_file_path):
@@ -26,8 +25,3 @@ def read_transactions_from_excel(xlsx_file_path):
     except Exception as e:
         print(f'Ошибка при чтении XLSX-файла: {e}')
         return []
-
-
-if __name__ == '__main__':
-    transactions = read_transactions_from_excel('data/transactions_excel.xlsx')
-    print(transactions)
