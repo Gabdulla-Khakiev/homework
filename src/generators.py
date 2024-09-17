@@ -4,14 +4,20 @@ def filter_by_currency(transactions_list, currency):
         return []  # Вернуть пустой список, если входной список пуст
 
         # Фильтрация транзакций по валюте
-    filtered_transactions = [
-        transaction for transaction in transactions_list
-        if (
-                transaction.get("operationAmount") and
-                transaction["operationAmount"].get("currency") and
-                transaction["operationAmount"]["currency"].get("code") == currency
-        )
-    ]
+    if "operationAmount" in transactions_list:
+        filtered_transactions = [
+            transaction for transaction in transactions_list
+            if (
+                    transaction.get("operationAmount") and
+                    transaction["operationAmount"].get("currency") and
+                    transaction["operationAmount"]["currency"].get("code") == currency
+            )
+        ]
+    else:
+        filtered_transactions = [
+            transaction for transaction in transactions_list
+            if transaction.get("currency_code") == currency
+        ]
 
     return filtered_transactions
 

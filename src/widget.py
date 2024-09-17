@@ -21,12 +21,17 @@ def mask_account_card(user_information: str) -> str:
 
 
 def get_date(date: str) -> str:
-    """Функция меняет формат написания даты"""
+    """Функция меняет формат написания даты."""
     try:
-        datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
-        modified_date_list = date[:10].split("-")
-        modified_date_list.reverse()
-        modified_date = ".".join(modified_date_list)
+        # Попробуем обработать дату в формате '2023-09-05T11:30:32Z'
+        if date.endswith('Z'):
+            date = date[:-1]  # Убираем 'Z'
+            dt = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S")
+        else:
+            dt = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
+
+        # Преобразуем в нужный формат
+        modified_date = dt.strftime("%d.%m.%Y")
         return modified_date
     except ValueError:
         raise ValueError("Invalid datetime format")

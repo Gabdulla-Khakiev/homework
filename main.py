@@ -90,9 +90,13 @@ def main():
 
             sender = mask_account_card(transaction.get('from'))
             recipient = mask_account_card(transaction.get('to'))
-            amount = transaction.get('operationAmount').get('amount')
-            currency_data = transaction.get('operationAmount').get('currency')
-            currency_name = currency_data.get('name')
+            if 'operationAmount' in transaction:
+                amount = transaction.get('operationAmount').get('amount')
+                currency_data = transaction.get('operationAmount').get('currency')
+                currency_name = currency_data.get('name')
+            else:
+                amount = transaction.get('amount')
+                currency_name = transaction.get('currency_name')
             if sender == 'Ошибка ввода':
                 print(f'''{date} {description[counter]}\n{recipient}\nСумма: {amount} {currency_name}''')
             else:

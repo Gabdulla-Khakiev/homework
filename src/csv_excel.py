@@ -7,7 +7,7 @@ xlsx_file_path = "data/transactions_excel.xlsx"
 def read_transactions_from_csv(csv_file_path):
     """Чтение транзакций из CSV-файла и возврат их в виде списка словарей."""
     try:
-        df = pd.read_csv(csv_file_path)
+        df = pd.read_csv(csv_file_path, delimiter=";")
         transactions = df.to_dict(orient="records")
         return transactions
     except Exception as e:
