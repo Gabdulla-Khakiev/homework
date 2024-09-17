@@ -5,7 +5,7 @@ def search_operations(operations, search_string):
     """Возвращает список операций, у которых в описании есть строка поиска."""
     result = []
 
-    pattern = rf'\b{re.escape(search_string)}\b'
+    pattern = rf"\b{re.escape(search_string)}\b"
 
     for operation in operations:
         if re.search(pattern, operation.get("description", ""), re.IGNORECASE):

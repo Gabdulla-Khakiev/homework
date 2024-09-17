@@ -6,17 +6,17 @@ def filter_by_currency(transactions_list, currency):
         # Фильтрация транзакций по валюте
     if "operationAmount" in transactions_list:
         filtered_transactions = [
-            transaction for transaction in transactions_list
+            transaction
+            for transaction in transactions_list
             if (
-                    transaction.get("operationAmount") and
-                    transaction["operationAmount"].get("currency") and
-                    transaction["operationAmount"]["currency"].get("code") == currency
+                transaction.get("operationAmount")
+                and transaction["operationAmount"].get("currency")
+                and transaction["operationAmount"]["currency"].get("code") == currency
             )
         ]
     else:
         filtered_transactions = [
-            transaction for transaction in transactions_list
-            if transaction.get("currency_code") == currency
+            transaction for transaction in transactions_list if transaction.get("currency_code") == currency
         ]
 
     return filtered_transactions

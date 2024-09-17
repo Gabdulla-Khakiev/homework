@@ -24,7 +24,7 @@ def get_date(date: str) -> str:
     """Функция меняет формат написания даты."""
     try:
         # Попробуем обработать дату в формате '2023-09-05T11:30:32Z'
-        if date.endswith('Z'):
+        if date.endswith("Z"):
             date = date[:-1]  # Убираем 'Z'
             dt = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S")
         else:
