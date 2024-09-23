@@ -78,14 +78,3 @@ def get_transaction_amount_in_rub(transaction):
     logger.info("Звершение работы функции")
 
     raise ValueError(f"Неподдерживаемая валюта: {currency_code}")
-
-
-transaction = {
-    "id": 939719570,
-    "state": "EXECUTED",
-    "date": "2018-06-30T02:08:58.425572",
-    "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
-}
-
-if __name__ == "__main__":
-    print(load_transactions("data/operations.json"))
